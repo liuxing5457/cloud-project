@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cloud-provider-1 #服务名
+  cloud:
+    config:
+      uri: http://localhost:9090  #config地址
+  #数据源
+  datasource:
+    username: ${username}
+    password: ${password}
+    url: ${url}
+    driver-class-name: ${driver-class-name}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/ #eurela地址
+
+
+server:
+  port: 8899

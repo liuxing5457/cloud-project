@@ -1,0 +1,17 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: server-eureka #应用名称
+eureka:
+  server:
+    enable-self-preservation: false  #关闭自我保护  缺省为启动
+    eviction-interval-timer-in-ms: 1000 #清理间隔时长  默认为60秒   清理有问题的api
+  instance:
+    hostname: localhost #注册中心显示的名称
+    prefer-ip-address: true #可以将IP注册到Eureka Server上，如果不配置就是机器的主机名
+  client:
+    register-with-eureka: false #本服务不能作为client注册到其他EurekaServer上
+    fetch-registry: false #是否检索服务
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ #注册中心地址

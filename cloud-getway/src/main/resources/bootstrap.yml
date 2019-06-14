@@ -1,0 +1,23 @@
+#server:
+#  port: 5000
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:9000
+#  instance:
+#    prefer-ip-address: true
+#
+#spring:
+#  application:
+#    name: cloud-getway
+#
+#
+#zuul:
+#  routes:
+#    cloud-provider-1:
+#      path: /cloud-provider-1/**
+#      service-id: cloud-provider-1
+#    cloud-provider-2:
+#      path: /cloud-provider-2/**
+#      service-id: cloud-provider-2
+#
