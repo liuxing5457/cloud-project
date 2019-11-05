@@ -1,4 +1,6 @@
 spring:
+  freemarker:
+    cache: false
   application:
     name: cloud-provider-1 #服务名
   cloud:
@@ -15,6 +17,19 @@ eureka:
     service-url:
       defaultZone: http://localhost:9000/eureka/ #eurela地址
 
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  typeAliasesPackage: com.provider.cloudprovider.entity
+  check-config-location: true
+  global-config:
+    id-type: 0
+    field-strategy: 2
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 server:
   port: 8899

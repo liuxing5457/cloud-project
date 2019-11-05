@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("test")
+@RequestMapping("/test")
 public class TestController {
 
-    @PostMapping("testService")
+    @PostMapping("/testService")
     public String testService(@RequestBody JSONObject data) {
         String name = data.getString("name");
         return "你好" + name+",cloud-provider-1";
