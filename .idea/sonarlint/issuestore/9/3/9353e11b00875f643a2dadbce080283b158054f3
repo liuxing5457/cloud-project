@@ -1,8 +1,0 @@
-
-Qsquid:S2864œ"4Iterate over the "entrySet" instead of the "keySet".(›ÆÞüýÿÿÿÿ
-usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(™ºöºýÿÿÿÿ
-vsquid:S2293â"YReplace the type specification in this constructor call with the diamond operator ("<>").(™ºöºýÿÿÿÿ
-csquid:CommentedOutCodeLine›"<This block of commented-out lines of code should be removed.(ØŸ˜ï
-{squid:S1488¶"^Immediately return this expression instead of assigning it to the temporary variable "values".(Ž¹ÁÈýÿÿÿÿ
-nsquid:S3776R"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(˜ü¬úüÿÿÿÿ
-Vsquid:S1118":Add a private constructor to hide the implicit public one.(«ÖÍæýÿÿÿÿ

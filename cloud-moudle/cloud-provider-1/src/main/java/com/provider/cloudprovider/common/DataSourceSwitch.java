@@ -13,8 +13,10 @@ import java.lang.annotation.Target;
  * @author lizhe
  * @since 2019-4-3
  */
+/*
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
 public @interface DataSourceSwitch {
     DBTypeEnum value() default DBTypeEnum.order;
 }
+*/

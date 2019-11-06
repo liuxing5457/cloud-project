@@ -20,7 +20,7 @@ import java.util.Objects;
  * @author lizhe
  * @since 2019-4-3
  */
-@Component
+/*@Component
 @Aspect
 @Order(-100)
 public class DataSourceSwitchAspect {
@@ -87,11 +87,11 @@ public class DataSourceSwitchAspect {
         setDataSource(joinPoint,DBTypeEnum.product);
     }
 
-    /**
+    *//**
      * 添加注解方式,如果有注解优先注解,没有则按传过来的数据源配置
      * @param joinPoint
      * @param dbTypeEnum
-     */
+     *//*
     private void setDataSource(JoinPoint joinPoint, DBTypeEnum dbTypeEnum) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         DataSourceSwitch dataSourceSwitch = methodSignature.getMethod().getAnnotation(DataSourceSwitch.class);
@@ -123,4 +123,4 @@ public class DataSourceSwitchAspect {
             }
         }
     }
-}
+}*/

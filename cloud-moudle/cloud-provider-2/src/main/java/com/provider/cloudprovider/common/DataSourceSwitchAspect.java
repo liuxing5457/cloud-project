@@ -20,6 +20,7 @@ import java.util.Objects;
  * @author lizhe
  * @since 2019-4-3
  */
+/*
 @Component
 @Aspect
 @Order(-100)
@@ -86,13 +87,14 @@ public class DataSourceSwitchAspect {
         log.info("切换到product 数据源...");
         setDataSource(joinPoint,DBTypeEnum.product);
     }
+*/
 
     /**
      * 添加注解方式,如果有注解优先注解,没有则按传过来的数据源配置
      * @param joinPoint
      * @param dbTypeEnum
      */
-    private void setDataSource(JoinPoint joinPoint, DBTypeEnum dbTypeEnum) {
+   /* private void setDataSource(JoinPoint joinPoint, DBTypeEnum dbTypeEnum) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         DataSourceSwitch dataSourceSwitch = methodSignature.getMethod().getAnnotation(DataSourceSwitch.class);
         if (Objects.isNull(dataSourceSwitch) || Objects.isNull(dataSourceSwitch.value())) {
@@ -123,4 +125,4 @@ public class DataSourceSwitchAspect {
             }
         }
     }
-}
+}*/

@@ -1,26 +1,10 @@
 package com.provider.cloudprovider.config;
 
-import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
-import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.provider.cloudprovider.common.DBTypeEnum;
-import com.provider.cloudprovider.common.DynamicDataSource;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>
@@ -31,7 +15,7 @@ import java.util.Map;
  * @since 2019-4-3
  */
 @Configuration
-@MapperScan({"com.ebuy.cloud.service.erp.crm.serviceerpcrm.mapper.*"})
+@MapperScan("com.provider.cloudprovider.mapper")
 public class MybatisPlusConfig {
 
     /**
@@ -47,7 +31,7 @@ public class MybatisPlusConfig {
 
     /**
      * mapper-plus SQL执行效率插件【生产环境可以关闭】
-     */
+     *//*
     @Bean
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
@@ -90,10 +74,10 @@ public class MybatisPlusConfig {
     }
 
 
-    /**
+    *//**
      * 动态数据源配置
      * @return
-     */
+     *//*
     @Bean
     @Primary
     public DataSource multipleDataSource (@Qualifier("common") DataSource common,
@@ -131,7 +115,7 @@ public class MybatisPlusConfig {
                 paginationInterceptor()
         });
         return sqlSessionFactory.getObject();
-    }
+    }*/
 
 
 }

@@ -1,0 +1,5 @@
+
+?squid:S1148a"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+Psquid:S1118":Add a private constructor to hide the implicit public one.(˜§Ó9
+{squid:S14883"_Immediately return this expression instead of assigning it to the temporary variable "newDate".(¡ŠÁâûÿÿÿÿ
+dsquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(˜§Ó9

@@ -9,7 +9,7 @@ package com.provider.cloudprovider.common;
  * @since 2019-4-3
  */
 public enum DBTypeEnum {
-    common("common"), order("order"),system("system"),logistics("logistics"),warehouse("warehouse"),product("product");
+   /* common("common"), order("order"),system("system"),logistics("logistics"),warehouse("warehouse"),product("product");
     private String value;
 
     DBTypeEnum(String value) {
@@ -18,5 +18,5 @@ public enum DBTypeEnum {
 
     public String getValue() {
         return value;
-    }
+    }*/
 }
