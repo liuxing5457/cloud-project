@@ -19,4 +19,10 @@ public interface IUserProductService extends IService<UserProduct> {
     List<UserProduct> getOneUserInfo(JSONObject data);
 
     Integer deductionInventory(Integer productId, Integer userId, Integer num);
+
+    boolean insertUserInfo(UserProduct userProduct);
+
+    boolean updateUserInfo(UserProduct userProduct);
+
+    boolean deleteUserProductInfo(Integer id);
 }

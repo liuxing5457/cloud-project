@@ -31,5 +31,13 @@ mybatis-plus:
     cache-enabled: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
 server:
   port: 8899

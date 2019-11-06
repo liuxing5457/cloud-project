@@ -17,4 +17,10 @@ import java.util.List;
 public interface IUserTableService extends IService<UserTable> {
 
     List<UserTable> getOneUserInfo(JSONObject data);
+
+    boolean insertUserInfo(UserTable user);
+
+    boolean updateUserInfo(UserTable user);
+
+    boolean deleteUserInfo(Integer id);
 }

@@ -9,6 +9,7 @@ import com.provider.cloudprovider.service.IUserProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -83,7 +84,7 @@ public class UserProductController {
     @PostMapping("/insertUserProductInfo")
     public ResponseMsg insertUserInfo(@RequestBody UserProduct userProduct) {
         try {
-            boolean save = userProductService.save(userProduct);
+            boolean save = userProductService.insertUserInfo(userProduct);
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "插入用户商品信息成功" : "插入用户商品信息失败!");
         } catch (Exception e) {
             logger.info("插入用户商品信息失败！============》" + e.getMessage());
@@ -102,7 +103,7 @@ public class UserProductController {
             if(null==userProduct.getId()){
                 return new ResponseMsg(Code.UNKNOW, null, "id不能为空！" );
             }
-            boolean save = userProductService.updateById(userProduct);
+            boolean save = userProductService.updateUserInfo(userProduct);
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "修改用户商品信息成功" : "修改用户商品信息失败!");
         } catch (Exception e) {
             logger.info("修改用户商品信息失败！============》" + e.getMessage());
@@ -122,7 +123,7 @@ public class UserProductController {
             if(null==userProduct.getId()){
                 return new ResponseMsg(Code.UNKNOW, null, "id不能为空！" );
             }
-            boolean save = userProductService.removeById(userProduct.getId());
+            boolean save = userProductService.deleteUserProductInfo(userProduct.getId());
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "删除用户商品信息成功" : "删除用户商品信息失败!");
         } catch (Exception e) {
             logger.info("删除用户商品信息失败！============》" + e.getMessage());

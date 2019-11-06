@@ -14,7 +14,7 @@
 
 
     <update id="deductionInventory">
-        update user_product set product_num=#{num} where id=#{id} and user_id = #{userId}
+        update user_product set product_num=product_num-#{num} where id=#{id} and user_id = #{userId}
     </update>
 
 </mapper>

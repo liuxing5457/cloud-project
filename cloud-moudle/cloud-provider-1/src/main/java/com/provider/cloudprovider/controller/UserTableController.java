@@ -78,7 +78,7 @@ public class UserTableController {
     @PostMapping("/insertUserInfo")
     public ResponseMsg insertUserInfo(@RequestBody UserTable user) {
         try {
-            boolean save = userTableService.save(user);
+            boolean save = userTableService.insertUserInfo(user);
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "插入用户信息成功" : "插入用户信息失败!");
         } catch (Exception e) {
             logger.info("插入用户信息失败！============》" + e.getMessage());
@@ -97,7 +97,7 @@ public class UserTableController {
             if(null==user.getId()){
                 return new ResponseMsg(Code.UNKNOW, null, "id不能为空！" );
             }
-            boolean save = userTableService.updateById(user);
+            boolean save = userTableService.updateUserInfo(user);
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "修改用户信息成功" : "修改用户信息失败!");
         } catch (Exception e) {
             logger.info("修改用户信息失败！============》" + e.getMessage());
@@ -117,7 +117,7 @@ public class UserTableController {
             if(null==user.getId()){
                 return new ResponseMsg(Code.UNKNOW, null, "id不能为空！" );
             }
-            boolean save = userTableService.removeById(user.getId());
+            boolean save = userTableService.deleteUserInfo(user.getId());
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "删除用户信息成功" : "删除用户信息失败!");
         } catch (Exception e) {
             logger.info("删除用户信息失败！============》" + e.getMessage());

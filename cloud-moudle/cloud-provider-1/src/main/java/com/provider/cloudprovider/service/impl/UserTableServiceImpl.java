@@ -9,6 +9,7 @@ import com.provider.cloudprovider.service.IUserTableService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,12 +31,31 @@ public class UserTableServiceImpl extends ServiceImpl<UserTableMapper, UserTable
     @Override
     public List<UserTable> getOneUserInfo(JSONObject data) {
         QueryWrapper<UserTable> queryWrapper = new QueryWrapper<>();
-        if(null!=data.getInteger("id")){
-            queryWrapper.eq("id",data.getInteger("id"));
+        if (null != data.getInteger("id")) {
+            queryWrapper.eq("id", data.getInteger("id"));
         }
-        if(StringUtils.isNotBlank(data.getString("userName"))){
-            queryWrapper.eq("user_name",data.getString("userName"));
+        if (StringUtils.isNotBlank(data.getString("userName"))) {
+            queryWrapper.eq("user_name", data.getString("userName"));
         }
         return userTableMapper.selectList(queryWrapper);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean insertUserInfo(UserTable user) {
+        return userTableMapper.insert(user) == 1 ? true : false;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean updateUserInfo(UserTable user) {
+        return userTableMapper.updateById(user) == 1 ? true : false;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean deleteUserInfo(Integer id) {
+        return userTableMapper.deleteById(id) == 1 ? true : false;
+    }
+
 }
