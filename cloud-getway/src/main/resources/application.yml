@@ -23,7 +23,7 @@ spring:
           uri: lb://cloud-provider-1
           predicates:
             # 重点！转发该路径！,/userapi/**,
-            - Path=/cloudprovider1/**
+            - Path=/cloudprovider1/*/*
           # http://localhost:6601/userapi/user/users/2, 必须加上StripPrefix=1，否则访问服务时会带上userapi
           #而不是我们期望的去掉userapi，只保留**部分
           filters:
@@ -31,7 +31,7 @@ spring:
         - id:  cloud-provider-2
           uri: lb://cloud-provider-2
           predicates:
-            - Path=/cloudprovider2/**
+            - Path=/cloudprovider2/*/*
           filters:
             - StripPrefix=1
 
