@@ -6,9 +6,6 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  * <p>
  *  多数据源的选择
  * </p>
- *
- * @author lizhe
- * @since 2019-4-3
  */
 /*
 public class DynamicDataSource extends AbstractRoutingDataSource {

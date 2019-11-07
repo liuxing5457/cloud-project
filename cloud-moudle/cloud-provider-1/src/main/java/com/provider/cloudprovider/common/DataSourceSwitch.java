@@ -9,9 +9,6 @@ import java.lang.annotation.Target;
  * <p>
  *  数据源切换
  * </p>
- *
- * @author lizhe
- * @since 2019-4-3
  */
 /*
 @Retention(RetentionPolicy.RUNTIME)

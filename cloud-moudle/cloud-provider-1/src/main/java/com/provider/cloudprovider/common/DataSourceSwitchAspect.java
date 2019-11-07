@@ -17,8 +17,6 @@ import java.util.Objects;
  *  数据源AOP注解实现
  * </p>
  *
- * @author lizhe
- * @since 2019-4-3
  */
 /*@Component
 @Aspect

@@ -1,6 +1,6 @@
 spring:
   freemarker:
-    cache: false
+    cache: false #关闭sprring自带的缓存
   application:
     name: cloud-provider-1 #服务名
   cloud:
@@ -12,14 +12,17 @@ spring:
     password: ${password}
     url: ${url}
     driver-class-name: ${driver-class-name}
+
+#注册中心
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:9000/eureka/ #eurela地址
 
+#mybatis-plus配置
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*.xml
-  typeAliasesPackage: com.provider.cloudprovider.entity
+  mapper-locations: classpath:/mapper/*.xml  #xml所在位置
+  typeAliasesPackage: com.provider.cloudprovider.entity  #实体类所在位置
   check-config-location: true
   global-config:
     id-type: 0
@@ -31,13 +34,16 @@ mybatis-plus:
     cache-enabled: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+# hystrix熔断器配置
 feign:
   hystrix:
-    enabled: true
+    enabled: true #开启熔断器
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 5000 # 连接超时时间
+        readTimeout: 5000 #读取超时时间
+
+#端口
 server:
   port: 8899

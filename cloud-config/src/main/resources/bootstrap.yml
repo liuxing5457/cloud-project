@@ -1,6 +1,7 @@
 
 spring:
   profiles:
+    # 加载本地开发环境
     active: native
   application:
     name: cloud-config
@@ -9,18 +10,23 @@ spring:
       server:
         default-application-name: cloud-config
         # 有git地址去git下找配置文件
-#        git:
-#          uri:
-#          password:
-#          username:
+        # git:
+        #   uri:
+        #   password:
+        #   username:
         # 没有git在本地配置的路径下找
         native:
+          #在classpath:/config下加载配置文件
           search-locations: classpath:/config
+
+# 注册中心
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:9000/eureka/
   instance:
+    # 配置eureka.instance.prefer-ip-address = true 就可以将IP注册到Eureka Server上，而如果不配置就是机器的主机名
     prefer-ip-address: true
+#端口
 server:
   port: 9090

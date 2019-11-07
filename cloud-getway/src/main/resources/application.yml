@@ -1,4 +1,5 @@
 
+#服务端口
 server:
   port: 5000
 
@@ -8,10 +9,14 @@ spring:
   application:
     name: cloud-gateway
   cloud:
+    # spring cloud gateway 路由配置方式
     gateway:
+      #是否与服务发现组件进行结合，通过 serviceId(必须设置成大写) 转发到具体的服务实例。默认为false，设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能。
       discovery:
+        #路由访问方式：http://Gateway_HOST:Gateway_PORT/大写的serviceId/**，其中微服务应用名默认大写访问。
         locator:
           enabled: true
+          #配置完成之后我们就可以通过小写的服务名称进行访问
           lower-case-service-id: true
       filter:
         remove-non-proxy-headers:
@@ -36,6 +41,7 @@ spring:
             - StripPrefix=1
 
 
+#注册中心配置
 eureka:
   client:
     serviceUrl:

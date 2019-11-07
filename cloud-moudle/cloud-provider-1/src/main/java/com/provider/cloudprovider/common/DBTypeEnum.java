@@ -5,8 +5,6 @@ package com.provider.cloudprovider.common;
  *  数据源枚举类型
  * </p>
  *
- * @author lizhe
- * @since 2019-4-3
  */
 /*public enum DBTypeEnum {
     common("common"), order("order"),system("system"),logistics("logistics"),warehouse("warehouse"),product("product");

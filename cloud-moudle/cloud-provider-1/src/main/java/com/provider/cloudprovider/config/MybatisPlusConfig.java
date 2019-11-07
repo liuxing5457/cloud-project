@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Configuration;
  *  持久化配置
  * </p>
  *
- * @author lizhe
- * @since 2019-4-3
  */
 @Configuration
 @MapperScan("com.provider.cloudprovider.mapper")

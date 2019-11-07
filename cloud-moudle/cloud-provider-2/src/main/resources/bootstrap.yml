@@ -1,7 +1,7 @@
 
 spring:
   freemarker:
-    cache: false
+    cache: false #关闭spring自带缓存
   application:
     name: cloud-provider-2 #服务名
   cloud:
@@ -13,15 +13,16 @@ spring:
     password: ${password}
     url: ${url}
     driver-class-name: ${driver-class-name}
+#注册中心
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:9000/eureka/ #eurela地址
 
-
+#mybatis-plus配置
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*.xml
-  typeAliasesPackage: com.provider.cloudprovider.entity
+  mapper-locations: classpath:/mapper/*.xml  #xml所在位置
+  typeAliasesPackage: com.provider.cloudprovider.entity  #实体类所在位置
   check-config-location: true
   global-config:
     id-type: 0

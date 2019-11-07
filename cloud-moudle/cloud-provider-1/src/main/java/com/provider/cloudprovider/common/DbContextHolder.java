@@ -4,8 +4,6 @@ package com.provider.cloudprovider.common;
  *  数据源上下文
  * </p>
  *
- * @author lizhe
- * @since 2019-4-3
  */
 public class DbContextHolder {
    /* private static final ThreadLocal contextHolder = new ThreadLocal<>();*/
