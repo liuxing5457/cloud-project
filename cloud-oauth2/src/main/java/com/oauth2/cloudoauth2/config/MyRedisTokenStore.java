@@ -22,7 +22,7 @@ import java.util.*;
  * @Author  xuzibang
  * @Date 2019/11/16
  */
-@SuppressWarnings("ALL")
+
 @Component
 public class MyRedisTokenStore implements TokenStore {
 
@@ -146,16 +146,7 @@ public class MyRedisTokenStore implements TokenStore {
                 conn.stringCommands().set(refreshToAccessKey, auth);
                 byte[] accessToRefreshKey = serializeKey(ACCESS_TO_REFRESH + token.getValue());
                 conn.stringCommands().set(accessToRefreshKey, refresh);
-                if (refreshToken instanceof ExpiringOAuth2RefreshToken) {
-                    ExpiringOAuth2RefreshToken expiringRefreshToken = (ExpiringOAuth2RefreshToken) refreshToken;
-                    Date expiration = expiringRefreshToken.getExpiration();
-                    if (expiration != null) {
-                        int seconds = Long.valueOf((expiration.getTime() - System.currentTimeMillis()) / 1000L)
-                                .intValue();
-                        conn.expire(refreshToAccessKey, seconds);
-                        conn.expire(accessToRefreshKey, seconds);
-                    }
-                }
+                ifRefreshToken(refreshToken,refreshToAccessKey,accessToRefreshKey,conn);
             }
             conn.closePipeline();
         } finally {
@@ -237,16 +228,7 @@ public class MyRedisTokenStore implements TokenStore {
             conn.openPipeline();
             conn.stringCommands().set(refreshKey, serializedRefreshToken);
             conn.stringCommands().set(refreshAuthKey, serialize(authentication));
-            if (refreshToken instanceof ExpiringOAuth2RefreshToken) {
-                ExpiringOAuth2RefreshToken expiringRefreshToken = (ExpiringOAuth2RefreshToken) refreshToken;
-                Date expiration = expiringRefreshToken.getExpiration();
-                if (expiration != null) {
-                    int seconds = Long.valueOf((expiration.getTime() - System.currentTimeMillis()) / 1000L)
-                            .intValue();
-                    conn.expire(refreshKey, seconds);
-                    conn.expire(refreshAuthKey, seconds);
-                }
-            }
+            ifRefreshToken(refreshToken,refreshKey,refreshAuthKey,conn);
             conn.closePipeline();
         } finally {
             conn.close();
@@ -394,5 +376,25 @@ public class MyRedisTokenStore implements TokenStore {
             accessTokens.add(accessToken);
         }
         return Collections.<OAuth2AccessToken> unmodifiableCollection(accessTokens);
+    }
+
+    /**
+     * 共有判断
+     * @param refreshToken
+     * @param refreshKey
+     * @param accessKey
+     * @param conn
+     */
+    private void ifRefreshToken(OAuth2RefreshToken refreshToken,byte[] refreshKey,byte[] accessKey,RedisConnection conn) {
+        if (refreshToken instanceof ExpiringOAuth2RefreshToken) {
+            ExpiringOAuth2RefreshToken expiringRefreshToken = (ExpiringOAuth2RefreshToken) refreshToken;
+            Date expiration = expiringRefreshToken.getExpiration();
+            if (expiration != null) {
+                int seconds = Long.valueOf((expiration.getTime() - System.currentTimeMillis()) / 1000L)
+                        .intValue();
+                conn.expire(refreshKey, seconds);
+                conn.expire(accessKey, seconds);
+            }
+        }
     }
 }
