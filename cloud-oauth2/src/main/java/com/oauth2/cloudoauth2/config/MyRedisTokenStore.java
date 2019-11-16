@@ -204,7 +204,6 @@ public class MyRedisTokenStore implements TokenStore {
             conn.get(authKey);
             conn.del(accessKey);
             conn.del(accessToRefreshKey);
-            // Don't remove the refresh token - it's up to the caller to do that
             conn.del(authKey);
             List<Object> results = conn.closePipeline();
             byte[] access = (byte[]) results.get(0);
