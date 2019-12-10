@@ -30,7 +30,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/userProduct")
-public class UserProductController {
+public class UserProductController extends BaseController {
 
 
 
@@ -83,13 +83,11 @@ public class UserProductController {
      */
     @PostMapping("/insertUserProductInfo")
     public ResponseMsg insertUserInfo(@RequestBody UserProduct userProduct) {
-        try {
+        /**
+         * 在com.provider.cloudprovider.exception.GlobalExceptionsHandler类中捕捉到异常并处理所有不需要try  catch
+         */
             boolean save = userProductService.insertUserInfo(userProduct);
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "插入用户商品信息成功" : "插入用户商品信息失败!");
-        } catch (Exception e) {
-            logger.info("插入用户商品信息失败！============》" + e.getMessage());
-            return new ResponseMsg(Code.FAIL, null, "插入用户商品信息失败！" + e.getMessage());
-        }
     }
 
     /**

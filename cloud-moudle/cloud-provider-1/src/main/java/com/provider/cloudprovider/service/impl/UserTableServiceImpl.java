@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.provider.cloudprovider.entity.UserTable;
+import com.provider.cloudprovider.entity.dto.UserTableDTO;
 import com.provider.cloudprovider.mapper.UserTableMapper;
 import com.provider.cloudprovider.service.IUserTableService;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,8 +44,10 @@ public class UserTableServiceImpl extends ServiceImpl<UserTableMapper, UserTable
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean insertUserInfo(UserTable user) {
-        return userTableMapper.insert(user) == 1 ? true : false;
+    public boolean insertUserInfo(UserTableDTO user) {
+        UserTable userTable = new UserTable();
+        BeanUtils.copyProperties(user,userTable);
+        return userTableMapper.insert(userTable) == 1 ? true : false;
     }
 
     @Transactional(rollbackFor = Exception.class)

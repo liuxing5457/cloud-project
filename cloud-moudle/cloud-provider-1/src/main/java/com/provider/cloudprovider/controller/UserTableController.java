@@ -5,15 +5,19 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.cloudcommons.resp.Code;
 import com.example.cloudcommons.resp.ResponseMsg;
 import com.provider.cloudprovider.entity.UserTable;
+import com.provider.cloudprovider.entity.dto.UserTableDTO;
 import com.provider.cloudprovider.service.IUserTableService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -26,7 +30,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/userTable")
-public class UserTableController {
+public class UserTableController extends BaseController {
 
 
     private Logger logger = LoggerFactory.getLogger(UserTableController.class);
@@ -76,14 +80,15 @@ public class UserTableController {
      * @return
      */
     @PostMapping("/insertUserInfo")
-    public ResponseMsg insertUserInfo(@RequestBody UserTable user) {
-        try {
-            boolean save = userTableService.insertUserInfo(user);
-            return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "插入用户信息成功" : "插入用户信息失败!");
-        } catch (Exception e) {
-            logger.info("插入用户信息失败！============》" + e.getMessage());
-            return new ResponseMsg(Code.FAIL, null, "插入用户信息失败！" + e.getMessage());
+    public ResponseMsg insertUserInfo(@RequestBody @Valid UserTableDTO user, BindingResult bindingResult) {
+        /**
+         * 在com.provider.cloudprovider.exception.GlobalExceptionsHandler类中捕捉到异常并处理所有不需要try  catch
+         */
+        if (bindingResult.hasErrors()) {
+            return new ResponseMsg(Code.UNKNOW, null, getErrorMsg(bindingResult.getAllErrors()));
         }
+        boolean save = userTableService.insertUserInfo(user);
+        return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "插入用户信息成功" : "插入用户信息失败!");
     }
 
     /**
@@ -94,8 +99,8 @@ public class UserTableController {
     @PostMapping("/updateUserInfo")
     public ResponseMsg updateUserInfo(@RequestBody UserTable user) {
         try {
-            if(null==user.getId()){
-                return new ResponseMsg(Code.UNKNOW, null, "id不能为空！" );
+            if (null == user.getId()) {
+                return new ResponseMsg(Code.UNKNOW, null, "id不能为空！");
             }
             boolean save = userTableService.updateUserInfo(user);
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "修改用户信息成功" : "修改用户信息失败!");
@@ -114,8 +119,8 @@ public class UserTableController {
     @PostMapping("/deleteUserInfo")
     public ResponseMsg deleteUserInfo(@RequestBody UserTable user) {
         try {
-            if(null==user.getId()){
-                return new ResponseMsg(Code.UNKNOW, null, "id不能为空！" );
+            if (null == user.getId()) {
+                return new ResponseMsg(Code.UNKNOW, null, "id不能为空！");
             }
             boolean save = userTableService.deleteUserInfo(user.getId());
             return new ResponseMsg(save ? Code.SUCCESS : Code.UNKNOW, save, save ? "删除用户信息成功" : "删除用户信息失败!");

@@ -11,13 +11,27 @@ spring:
         default-application-name: cloud-config
         # 有git地址去git下找配置文件
         # git:
-        #   uri:
-        #   password:
-        #   username:
+        #   uri: ${config_git_uri:http://gitlab.java.yibainetwork.com/project/config/java/dev-local.git}
+        #   password:  ${config_git_username:robot}
+        #   username: ${config_git_password:robot2019}
         # 没有git在本地配置的路径下找
         native:
           #在classpath:/config下加载配置文件
           search-locations: classpath:/config
+
+
+################################# bus配置 项目暂时没有  ######################################
+#    bus:
+#      trace:
+#        enabled: true
+#    stream:
+#      kafka:
+#        binder:
+#          brokers: ${config_kafka_host:192.168.71.245:9092}
+#          defaultBrokerPort: ${config_kafka_port:9092}
+#          defaultZkPort: ${config_zk_port:2181}
+################################# bus配置 项目暂时没有  ######################################
+
 
 # 注册中心
 eureka:

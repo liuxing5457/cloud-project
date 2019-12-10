@@ -1,5 +1,8 @@
 package com.provider.cloudprovider.entity.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * @Author: carter
  * @Date: 2019/11/6 17:55
@@ -15,11 +18,13 @@ public class UserTableDTO {
     /**
      * 用户名
      */
+    @NotEmpty(message = "用户名不能为空")
     private String userName;
 
     /**
      * 密码
      */
+    @NotEmpty(message = "密码不能为空")
     private String passWord;
 
     /**
@@ -30,11 +35,13 @@ public class UserTableDTO {
     /**
      * 用户真实姓名
      */
+    @NotEmpty(message = "用户真实姓名不能为空")
     private String realName;
 
     /**
      * 身份证号码
      */
+    @NotEmpty(message = "身份证号码不能为空")
     private String identityCard;
 
     /**
@@ -45,11 +52,13 @@ public class UserTableDTO {
     /**
      * 年纪
      */
+    @NotNull(message = "年纪不能为空")
     private Integer age;
 
     /**
      * 性别1男2女
      */
+    @NotNull(message = "性别不能为空")
     private Integer sex;
 
     public Integer getId() {

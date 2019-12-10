@@ -3,6 +3,7 @@ package com.provider.cloudprovider.service;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.provider.cloudprovider.entity.UserTable;
+import com.provider.cloudprovider.entity.dto.UserTableDTO;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface IUserTableService extends IService<UserTable> {
 
     List<UserTable> getOneUserInfo(JSONObject data);
 
-    boolean insertUserInfo(UserTable user);
+    boolean insertUserInfo(UserTableDTO user);
 
     boolean updateUserInfo(UserTable user);
 
