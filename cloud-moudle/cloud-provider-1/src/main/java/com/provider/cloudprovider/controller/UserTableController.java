@@ -9,7 +9,6 @@ import com.provider.cloudprovider.entity.dto.UserTableDTO;
 import com.provider.cloudprovider.service.IUserTableService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class UserTableController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(UserTableController.class);
 
-    @Autowired
+    @Resource
     private IUserTableService userTableService;
 
     /**

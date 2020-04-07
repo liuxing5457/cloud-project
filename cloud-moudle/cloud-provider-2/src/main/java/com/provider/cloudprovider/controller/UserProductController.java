@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class UserProductController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(UserProductController.class);
 
-    @Autowired
+    @Resource
     private IUserProductService userProductService;
 
 

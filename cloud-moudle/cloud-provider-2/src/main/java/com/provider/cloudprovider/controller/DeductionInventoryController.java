@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 /**
  * 扣减库存
  *
@@ -26,7 +28,7 @@ public class DeductionInventoryController {
 
     private Logger logger = LoggerFactory.getLogger(DeductionInventoryController.class);
 
-    @Autowired
+    @Resource
     private IUserProductService userProductService;
 
     /**
